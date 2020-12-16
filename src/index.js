@@ -14,7 +14,8 @@ function createMainWindow() {
         icon: path.join(__dirname, "img/appIcon.png"),
         title: "Grand Pixel",
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         }
     });
 

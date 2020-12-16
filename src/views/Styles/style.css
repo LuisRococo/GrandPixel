@@ -6,28 +6,18 @@ html,
     min-height: 100%;
 }
 
-.barra-nm-imgs {
-    width: 150px;
-}
-
-.barra-nm-img {
-    background: rgb(0, 110, 255);
-}
-
-.barra-nm-img:hover {
-    background: rgb(185, 205, 231);
-}
-
 .caja-dbj {
     height: 100%;
     width: 100%;
-    background: #000;
+    background: rgb(0, 0, 0);
 }
 
 #cont-opciones {
-    /*background: rgb(185, 176, 176);*/
+    background: rgb(185, 176, 176);
     overflow: auto;
-}
+    width: 300px;
+    min-width: 300px;
+} 
 
 #img-vista {
     width: 100%;
@@ -37,6 +27,8 @@ html,
     background-position: center;
 }
 
+
+/*Scrollbar*/
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

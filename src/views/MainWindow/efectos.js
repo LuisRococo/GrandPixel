@@ -1,14 +1,12 @@
 const Jimp = require("jimp");
 
-function pixelear(img, valor, callback) {
+function pixelear1(img, valor, callback) {
     Jimp.read(img, (err, lenna) => {
         if (err) {
             console.log(err);
         } else {
             lenna
-                .resize(1000, 1000) // resize
-                .quality(60) // set JPEG quality
-                .greyscale() // set greyscale
+                .pixelate(valor)
                 .getBufferAsync(Jimp.AUTO).then((res)=>{
                     callback(res);
                 });
@@ -16,4 +14,4 @@ function pixelear(img, valor, callback) {
     });
 }
 
-module.exports.pixelear = pixelear;
+module.exports.pixelear1 = pixelear1;
