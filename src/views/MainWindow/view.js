@@ -1,22 +1,17 @@
 const lector = require("../../lector");
 const path=require("path");
+const efectos=require("./efectos");
 
-let btnAddZoom;
-let btnRestZoom;
 let imgVista;
-
-let view = null;
+let imagen=null;
+let btnTest;
 
 document.addEventListener('DOMContentLoaded', function () {
-    btnAddZoom = document.getElementById("btn-add-zoom");
-    btnRestZoom = document.getElementById("btn-rest-zoom");
     imgVista= document.getElementById("img-vista");
-    view=new ViewFinder(imgVista);
+    btnTest=document.getElementById("btn-test");
 
-    btnAddZoom.onclick=zoomMas;
-    btnRestZoom.onclick=mover;
-    cambiarImagenEnLienzo();
-    
+    btnTest.onclick=test;
+    //cambiarImagenEnLienzo();
 });
 
 function cambiarImagenEnLienzo(){
@@ -25,13 +20,17 @@ function cambiarImagenEnLienzo(){
     imgVista.style.backgroundImage= `url(data:image/jpeg;base64,${imagen})`.replace(/(\r\n|\n|\r)/gm, "");
 }
 
-function zoomMas(){
-    view.increaseZoom(20);
-    //imgVista.style.backgroundSize = "50" + "px " + "50" + "px";
+function test(){
+    let imgBinary=lector.leerImagen(path.join(__dirname, "../../img/img-pruebas2.png"));
+    efectos.pixelear(Buffer.from(imgBinary), -1, (res)=>{
+        strTag=imgBinaryToString64(res);
+        imgVista.style.backgroundImage=strTag;
+    });
 }
 
-function zoomMenos (){
-
+function imgBinaryToString64(binary){
+    let imagen=Buffer.from(binary).toString('base64')
+    return `url(data:image/jpeg;base64,${imagen})`.replace(/(\r\n|\n|\r)/gm, "");
 }
 
 function mover (){

@@ -29,4 +29,5 @@ body, html, .contenedor-main, .contenedor-secund, .barra-nm-imgs{
     height: 100%;
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
 }
