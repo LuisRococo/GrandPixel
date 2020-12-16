@@ -2,17 +2,29 @@ const lector = require("../../lector");
 const path=require("path");
 const efectos=require("./efectos");
 
-let imgVista;
+let imgVista=null;
+let contOpciones=null;
 let imagen=null;
-let btnTest;
+let btnTest=null;
 
 document.addEventListener('DOMContentLoaded', function () {
     imgVista= document.getElementById("img-vista");
     btnTest=document.getElementById("btn-test");
+    contOpciones=document.getElementById("cont-opciones");
 
+    window.addEventListener('resize', calcularScroll);
     btnTest.onclick=test;
+
+    calcularScroll();
     //cambiarImagenEnLienzo();
 });
+
+function calcularScroll (){
+    let altura=window.innerHeight;
+    //let altura=window.clientHeight;
+    contOpciones.style.height=altura+"px";
+    console.log(altura);
+}
 
 function cambiarImagenEnLienzo(){
     let archivo = lector.leerImagen(path.join(__dirname, "../../img/img-pruebas2.png"));

@@ -8,15 +8,52 @@
     <link rel="stylesheet" href="../bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
 
+    <script src="../bootstrap.min.js"></script>
     <script src="./view.js"></script>
 </head>
 
 <body>
-    <div class="contenedor-main">
-        <div class="d-flex contenedor-secund">
-            <button id="btn-test">Test</button>
-            <div class="caja-dbj">
-                <div id="img-vista" style="background-image: url(../../img/img-pruebas.jpg)";></div>
+    <div class="contenedor-main overflow-hidden">
+        <div class="row h-100 mx-0 px-0">
+            <div id="cont-opciones" class="col-3 mx-0 d-block">
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-block" id="btn-test">Test</button>
+                </div>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Accordion Item #1
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                accusamus terry richardson </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Accordion Item #2
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                accusamus terry richardson ad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9 h-100 m-0 p-0">
+                <div class="caja-dbj">
+                    <div id="img-vista" style="background-image: url(../../img/img-pruebas.jpg)" ;></div>
+                </div>
             </div>
         </div>
     </div>

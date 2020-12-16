@@ -1,7 +1,6 @@
 const { app, BrowserWindow, Menu, ipcMain, session } = require('electron');
 const path = require("path");
 const url = require("url");
-//const Jimp=require("jimp/es");
 
 var mainWindow;
 
