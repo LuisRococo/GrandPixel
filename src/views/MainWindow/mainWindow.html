@@ -15,15 +15,17 @@
 <body>
     <div class="contenedor-main">
         <div id="menu" class="bg-success d-block">
-            lel
+            <button class="" style="height: 100%; width: 40px;">
+                <img class="img-fluid menu-img" src="../../img/appIcon.png" alt="">
+            </button>
         </div>
         <div id="cont-workbench" class="d-block mx-0 px-0 d-flex">
             <div id="cont-opciones" class="mx-0 d-block">
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-danger" id="btn-load-img">Cargar</button>
+                <div class="d-grid gap-2 mb-3 px-3 pt-3">
+                    <button class="btn btn-dark" id="btn-load-img">Cargar</button>
                     <button class="btn btn-dark" id="btn-test">Test</button>
                 </div>
-                <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -36,10 +38,12 @@
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <div class="d-grid gap-2 mb-3">
-                                    <h6>Pixeleado 1: </h6>
-                                    <p>Tam Pixel:</p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="d-block m-0">Tam Pixel:</p>
+                                        <input class="d-block txt-number" disabled="false" type="number">
+                                    </div>
                                     <input id="rng-pix-1" type="range" min="0" max="100">
-                                    <button id="btn-pix-1" class="">Aplicar</button>
+                                    <button id="btn-pix-1" class="btn btn-dark">Aplicar</button>
                                 </div>
                             </div>
                         </div>
