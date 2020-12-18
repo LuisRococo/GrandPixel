@@ -7,19 +7,20 @@
     <title>Grand Pixel</title>
     <link rel="stylesheet" href="../Styles/bootstrap.min.css">
     <link rel="stylesheet" href="../Styles/style.css">
-
-    <script src="../Styles/bootstrap.min.js"></script>
-    <script src="./view.js"></script>
 </head>
 
 <body>
+
     <div class="contenedor-main">
         <div id="menu" class="d-block">
-            <button class="btn menu-btn">
+            <button id="btn-save" class="btn menu-btn">
                 <img class="menu-img" src="../../img/save-img.svg">
             </button>
-            <button class="btn menu-btn">
-                <img id="btn-load-img" class="menu-img" src="../../img/upload-img.svg">
+            <button id="btn-load-img" class="btn menu-btn">
+                <img class="menu-img" src="../../img/upload-img.svg">
+            </button>
+            <button id="btn-reset" class="btn menu-btn">
+                <img class="menu-img" src="../../img/reset-img.svg">
             </button>
         </div>
         <div id="cont-workbench" class="d-block mx-0 px-0 d-flex">
@@ -42,10 +43,17 @@
                                 <div class="d-grid gap-2 mb-3">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <p class="d-block m-0">Tam Pixel:</p>
-                                        <input class="d-block txt-number" disabled="false" type="number">
+                                        <input id="lbl-pix-1" class="d-block txt-number" disabled="false" type="number">
                                     </div>
                                     <input id="rng-pix-1" type="range" min="0" max="100">
-                                    <button id="btn-pix-1" class="btn btn-dark">Aplicar</button>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button id="btn-test-pix-1" class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="btn-pix-1" class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,11 +62,39 @@
             </div>
             <div class="w-100 h-100 m-0 p-0">
                 <div class="caja-dbj">
-                    <div id="img-vista" style="background-image: url(../../img/img-pruebas.jpg)" ;></div>
+                    <div id="img-vista" style="background-image: url(../../img/img-pruebas.jpg)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button id="btn-trigger-modal" style="display: none;" type="button" class="btn btn-primary"
+            data-bs-toggle="modal" data-bs-target="#modalImgNoCargada">
+            Launch static backdrop modal
+        </button>
+
+        <!--MODAL ERROR IMAGEN-->
+        <div class="modal fade" id="modalImgNoCargada" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sin imagen cargada</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        No hay una imagen cargada
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../Styles/bootstrap.min.js"></script>
+    <script src="./view.js"></script>
 </body>
 
 </html>
