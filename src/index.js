@@ -10,13 +10,13 @@ app.on("ready", () => {
 
 function createMainWindow() {
     mainWindow = new BrowserWindow({
-        show: false,
         icon: path.join(__dirname, "img/appIcon.png"),
         title: "Grand Pixel",
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
-        }
+        },
+        show: false
     });
 
     mainWindow.loadURL(url.format({

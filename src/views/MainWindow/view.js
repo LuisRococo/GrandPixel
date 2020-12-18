@@ -10,8 +10,9 @@ let direccionOriginal = null;
 
 let btnTest = null; let btnLoadImg = null; let btnResetImg = null;
 let btnPix1 = null; let rngPix1 = null; let lblPix1 = null; let btnTestPix1 = null;
-let contWorkbench = null; let menu = null;
-let imgViewer = null; let btnSave=null;
+let contWorkbench = null; let menu = null; let btnUndoTest=null;
+let imgViewer = null; let btnSave = null; let loadAnimationPnl = null;
+let noImagePnl=null;
 
 document.addEventListener('DOMContentLoaded', function () {
     imgViewer = document.getElementById("img-vista");
@@ -24,7 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
     contWorkbench = document.getElementById("cont-workbench");
     menu = document.getElementById("menu");
     btnResetImg = document.getElementById("btn-reset");
-    btnSave=document.getElementById("btn-save");
+    btnSave = document.getElementById("btn-save");
+    loadAnimationPnl = document.getElementById("loading-animation");
+    btnUndoTest = document.getElementById("btn-undo-test");
+    noImagePnl=document.getElementById("no-img-background");
 
     window.addEventListener('resize', calcularScroll);
     btnTest.onclick = test;
@@ -33,15 +37,28 @@ document.addEventListener('DOMContentLoaded', function () {
     btnLoadImg.onclick = cambiarImagen;
     rngPix1.oninput = function () { lblPix1.value = rngPix1.value; }
     btnResetImg.onclick = resetImgToOriginal;
-    btnSave.onclick=guardarImagen;
+    btnSave.onclick = guardarImagen;
+    btnUndoTest.onclick=undoTest;
 
     calcularScroll();
 });
 
-function guardarImagen (){
+function undoTest (){
     if (imagenFinal!=null){
-        openFileChooserSave((res)=>{
-            if (res!=null){
+        cambiarImagenEnLienzo(imagenFinal);
+    } else {
+        mensajeErrImgNoCargada();
+    }
+}
+
+function removeNoImgPanel (){
+    noImagePnl.style.display="none";
+}
+
+function guardarImagen() {
+    if (imagenFinal != null) {
+        openFileChooserSave((res) => {
+            if (res != null) {
                 lector.guardarImagen(res, imagenFinal);
             }
         });
@@ -52,10 +69,12 @@ function guardarImagen (){
 
 function aplicarPixeleado1() {
     if (imagenFinal != null) {
+        showLoadingAnimation(true);
         let tamPix = parseInt(rngPix1.value);
         efectos.pixelear1(Buffer.from(imagenFinal), tamPix, (res) => {
             cambiarImagenEnLienzo(res);
             imagenFinal = res;
+            showLoadingAnimation(false);
         });
     } else {
         mensajeErrImgNoCargada();
@@ -63,11 +82,21 @@ function aplicarPixeleado1() {
 
 }
 
+function showLoadingAnimation(bool) {
+    if (bool) {
+        loadAnimationPnl.style.display = "flex";
+    } else {
+        loadAnimationPnl.style.display = "none";
+    }
+}
+
 function testearPixelado1() {
     if (imagenFinal != null) {
+        showLoadingAnimation(true);
         let tamPix = parseInt(rngPix1.value);
         efectos.pixelear1(Buffer.from(imagenFinal), tamPix, (res) => {
             cambiarImagenEnLienzo(res);
+            showLoadingAnimation(false);
         });
     } else {
         mensajeErrImgNoCargada();
@@ -79,8 +108,12 @@ function mensajeErrImgNoCargada() {
 }
 
 function resetImgToOriginal() {
-    imagenFinal = imageOriginal;
-    cambiarImagenEnLienzo(imageOriginal);
+    if (imagenFinal != null) {
+        imagenFinal = imageOriginal;
+        cambiarImagenEnLienzo(imageOriginal);
+    } else {
+        mensajeErrImgNoCargada();
+    }
 }
 
 function cambiarImagenEnLienzo(imagen_binary) {
@@ -92,10 +125,11 @@ function cambiarImagen() {
     openFileChooserLoad((res) => {
         if (res != null) {
             let archivo = lector.leerImagen(res);
-            direccionOriginal=res;
+            direccionOriginal = res;
             imageOriginal = archivo;
             imagenFinal = archivo;
             cambiarImagenEnLienzo(imageOriginal);
+            removeNoImgPanel();
         }
     });
 }
@@ -130,11 +164,7 @@ function openFileChooserSave(callback) {
 }
 
 function test() {
-    let imgBinary = imageOriginal;
-    efectos.test(Buffer.from(imgBinary), (res) => {
-        strTag = imgBinaryToString64(res);
-        imgViewer.style.backgroundImage = strTag;
-    });
+    showLoadingAnimation(true)
 }
 
 function imgBinaryToString64(binary) {
