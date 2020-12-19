@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     btnUndoTest.onclick=undoTest;
 
     calcularScroll();
+    document.getElementById("animacion-loading-app").remove();
 });
 
 function undoTest (){

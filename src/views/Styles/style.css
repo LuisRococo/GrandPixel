@@ -24,6 +24,18 @@ body, html, .contenedor-main {
     justify-content: center;
     align-items: center;
     display: flex;
+    z-index: 1;
+}
+
+#animacion-loading-app{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 3;
 }
 
 #load-animation{
@@ -68,6 +80,7 @@ body, html, .contenedor-main {
     justify-content: center;
     align-items: center;
     display: none;
+    z-index: 2;
 }
 
 /*Scrollbar*/
