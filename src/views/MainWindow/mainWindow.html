@@ -26,16 +26,17 @@
                 <button onclick="cambiarImagen()" id="btn-load-img" title="Load Image" class="btn menu-btn">
                     <img class="menu-img" src="../../img/upload-img.svg">
                 </button>
-                <button onclick="resetImgToOriginal()" id="btn-reset" title="Reset to original img" class="btn menu-btn">
-                    <img class="menu-img" src="../../img/reset-img.svg">
-                </button>
                 <button onclick="undoTest()" id="btn-undo-test" title="Undo Test" class="btn menu-btn">
                     <img class="menu-img" src="../../img/undo-test.svg">
                 </button>
             </div>
             <div class="">
+                <button onclick="resetImgToOriginal()" id="btn-reset" title="Reset to original img"
+                    class="btn menu-btn">
+                    <img class="menu-img" src="../../img/reset-img.svg">
+                </button>
                 <button id="btn-info" title="Undo Test" class="btn menu-btn">
-                    <img class="menu-img" src="../../img/info-img.svg">
+                    <img onclick="abrirVentanaInfo()" class="menu-img" src="../../img/info-img.svg">
                 </button>
             </div>
         </div>
@@ -50,7 +51,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
-                                Pixeleado
+                                Pixelate
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -58,16 +59,220 @@
                             <div class="accordion-body">
                                 <div class="d-grid gap-2 mb-3">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <p class="d-block m-0">Tam Pixel:</p>
+                                        <p class="d-block m-0">Pixel Size:</p>
                                         <input id="lbl-pix-1" class="d-block txt-number" disabled="false" type="number">
                                     </div>
                                     <input oninput="rangeEventPix1()" id="rng-pix-1" type="range" min="0" max="100">
                                     <div class="row">
                                         <div class="col-6">
-                                            <button onclick="testearPixelado1()" id="btn-test-pix-1" class="btn btn-dark w-100">Test</button>
+                                            <button onclick="testearPixelado1()" id="btn-test-pix-1"
+                                                class="btn btn-dark w-100">Test</button>
                                         </div>
                                         <div class="col-6">
-                                            <button onclick="aplicarPixeleado1()" id="btn-pix-1" class="btn btn-primary w-100">Aplicar</button>
+                                            <button onclick="aplicarPixeleado1()" id="btn-pix-1"
+                                                class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Blur
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSeven" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div>
+                                    <b>Fast Blur</b>
+                                    <div class="d-grid gap-2 mb-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <p class="d-block m-0">Value:</p>
+                                            <input id="lbl-fast-blur" class="d-block txt-number" disabled="false"
+                                                type="number">
+                                        </div>
+                                        <input oninput="rangeEventFastBlur()" type="range" min="1" max="50" name="Lel"
+                                            id="rng-fast-blur">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button onclick="testearFastBlur()"
+                                                    class="btn btn-dark w-100">Test</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button onclick="aplicarFastBlur()"
+                                                    class="btn btn-primary w-100">Aplicar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <b>Gaussian Blur</b>
+                                    <div class="d-grid gap-2 mb-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <p class="d-block m-0">Value:</p>
+                                            <input id="lbl-gauss-blur" class="d-block txt-number" disabled="false"
+                                                type="number">
+                                        </div>
+                                        <input oninput="rangeEventGaussBlur()" type="range" min="1" max="10" name="Lel"
+                                            id="rng-gauss-blur">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button onclick="testearGaussBlur()"
+                                                    class="btn btn-dark w-100">Test</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button onclick="aplicarGaussBlur()"
+                                                    class="btn btn-primary w-100">Aplicar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Brightness
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="d-grid gap-2 mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="d-block m-0">Brightness:</p>
+                                        <input id="lbl-bright" class="d-block txt-number" disabled="false"
+                                            type="number">
+                                    </div>
+                                    <input oninput="rangeEventBright()" type="range" step="0.1" min="-1" max="1"
+                                        name="Lel" id="rng-bright">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button onclick="testearBright()" id="btn-test-bright"
+                                                class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button onclick="aplicarBright()" id="btn-bright"
+                                                class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Contrast
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="d-grid gap-2 mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="d-block m-0">Contrast:</p>
+                                        <input id="lbl-contrast" class="d-block txt-number" disabled="false"
+                                            type="number">
+                                    </div>
+                                    <input oninput="rangeEventContrast()" type="range" step="0.1" min="-1" max="1"
+                                        name="Lel" id="rng-contrast">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button onclick="testearContrast()" id="btn-test-contrast"
+                                                class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button onclick="aplicarContrast()" id="btn-contrast"
+                                                class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseFive" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Grey Scale
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="d-grid gap-2 mb-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button onclick="testearGreyScale()" id="btn-test-grey-scale"
+                                                class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button onclick="aplicarGreyScale()" id="btn-gray-scale"
+                                                class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseSix" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Invert Colors
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="d-grid gap-2 mb-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button onclick="testearInvertColors()"
+                                                class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button onclick="aplicarInvertColors()"
+                                                class="btn btn-primary w-100">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Dither
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <div class="d-grid gap-2 mb-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button onclick="testearDither()" id="btn-test-pix-1"
+                                                class="btn btn-dark w-100">Test</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button onclick="aplicarDither()" id="btn-pix-1"
+                                                class="btn btn-primary w-100">Aplicar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +292,7 @@
                 <div id="loading-animation" class="overflow-hidden">
                     <img src="../../img/loading-gif.gif" width="90px" alt="">
                 </div>
-                
+
                 <div class="caja-dbj">
                     <div id="img-vista"></div>
                 </div>

@@ -46,8 +46,9 @@ function createInfoWindow (){
             enableRemoteModule: true
         },
         show: false,
+        resizable: false,
         width: 500,
-        height: 500
+        height: 420
     });
 
     infoWindow.loadURL(url.format({

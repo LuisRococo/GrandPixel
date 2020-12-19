@@ -64,6 +64,14 @@ body, html, .contenedor-main {
     height: 100%;
 }
 
+#header-info{
+    background: rgb(190, 38, 58);
+    color: floralwhite;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .menu-btn{
     height: 100%;
     display: inline-block;
