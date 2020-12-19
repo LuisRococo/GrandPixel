@@ -3,6 +3,7 @@ const efectos = require("../../efectos");
 const { dialog } = require('electron').remote;
 const remote = require("electron").remote;
 const { ipcRenderer } = require('electron');
+var audio = new Audio("../../img/MilosThemeSong.mp3");
 
 let imageOriginal = null;
 let imagenFinal = null;
@@ -11,10 +12,11 @@ let direccionOriginal = null;
 let rngPix1 = null; let lblPix1 = null;
 let contWorkbench = null; let menu = null;
 let imgViewer = null; let loadAnimationPnl = null;
-let noImagePnl=null; let rngBright=null; let lblBright=null;
-let rngContrast=null; let lblContrast=null;
-let rngGaussBlur=null; let lblGaussBlur=null;
-let rngFastBlur=null; let lblFastBlur=null;
+let noImagePnl = null; let rngBright = null; let lblBright = null;
+let rngContrast = null; let lblContrast = null;
+let rngGaussBlur = null; let lblGaussBlur = null;
+let rngFastBlur = null; let lblFastBlur = null;
+let motivacionBoolean = false; let motivacionAnimacion;
 
 document.addEventListener('DOMContentLoaded', function () {
     imgViewer = document.getElementById("img-vista");
@@ -23,15 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
     contWorkbench = document.getElementById("cont-workbench");
     menu = document.getElementById("menu");
     loadAnimationPnl = document.getElementById("loading-animation");
-    noImagePnl=document.getElementById("no-img-background");
-    rngBright=document.getElementById("rng-bright");
-    lblBright=document.getElementById("lbl-bright");
-    rngContrast=document.getElementById("rng-contrast");
-    lblContrast=document.getElementById("lbl-contrast");
-    rngGaussBlur=document.getElementById("rng-gauss-blur");
-    lblGaussBlur=document.getElementById("lbl-gauss-blur");
-    rngFastBlur=document.getElementById("rng-fast-blur");
-    lblFastBlur=document.getElementById("lbl-fast-blur");
+    noImagePnl = document.getElementById("no-img-background");
+    rngBright = document.getElementById("rng-bright");
+    lblBright = document.getElementById("lbl-bright");
+    rngContrast = document.getElementById("rng-contrast");
+    lblContrast = document.getElementById("lbl-contrast");
+    rngGaussBlur = document.getElementById("rng-gauss-blur");
+    lblGaussBlur = document.getElementById("lbl-gauss-blur");
+    rngFastBlur = document.getElementById("rng-fast-blur");
+    lblFastBlur = document.getElementById("lbl-fast-blur");
+    motivacionAnimacion = document.getElementById("motivational-animation");
 
     window.addEventListener('resize', calcularScroll);
 
@@ -40,16 +43,28 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("animacion-loading-app").remove();
 });
 
-function inicializarLabelsConSlider (){
-    lblPix1.value=rngPix1.value;
+function inicializarLabelsConSlider() {
+    lblPix1.value = rngPix1.value;
     lblBright.value = rngBright.value;
-    lblContrast.value=rngContrast.value;
-    lblGaussBlur.value=rngGaussBlur.value;
-    lblFastBlur.value=rngFastBlur.value;
+    lblContrast.value = rngContrast.value;
+    lblGaussBlur.value = rngGaussBlur.value;
+    lblFastBlur.value = rngFastBlur.value;
+}
+
+function motivacion() {
+    if (motivacionBoolean) {
+        motivacionAnimacion.style.display = "none";
+        audio.pause();
+        audio.currentTime = 0;
+    } else {
+        motivacionAnimacion.style.display = "flex";
+        audio.play();
+    }
+    motivacionBoolean = !motivacionBoolean;
 }
 
 //PIXELEADO
-function rangeEventPix1 (){
+function rangeEventPix1() {
     lblPix1.value = rngPix1.value;
 }
 
@@ -107,7 +122,7 @@ function testearDither() {
 }
 
 //BRIGHTNESS
-function rangeEventBright (){
+function rangeEventBright() {
     lblBright.value = rngBright.value;
 }
 
@@ -139,7 +154,7 @@ function testearBright() {
 }
 
 //CONTRAST
-function rangeEventContrast (){
+function rangeEventContrast() {
     lblContrast.value = rngContrast.value;
 }
 
@@ -223,7 +238,7 @@ function testearInvertColors() {
 }
 
 //GAUSS BLUR
-function rangeEventGaussBlur (){
+function rangeEventGaussBlur() {
     lblGaussBlur.value = rngGaussBlur.value;
 }
 
@@ -255,7 +270,7 @@ function testearGaussBlur() {
 }
 
 //FAST BLUR
-function rangeEventFastBlur (){
+function rangeEventFastBlur() {
     lblFastBlur.value = rngFastBlur.value;
 }
 
@@ -287,20 +302,20 @@ function testearFastBlur() {
 }
 
 //DEMAS
-function abrirVentanaInfo (){
+function abrirVentanaInfo() {
     ipcRenderer.send('new-info-window');
 }
 
-function undoTest (){
-    if (imagenFinal!=null){
+function undoTest() {
+    if (imagenFinal != null) {
         cambiarImagenEnLienzo(imagenFinal);
     } else {
         mensajeErrImgNoCargada();
     }
 }
 
-function removeNoImgPanel (){
-    noImagePnl.style.display="none";
+function removeNoImgPanel() {
+    noImagePnl.style.display = "none";
 }
 
 function guardarImagen() {
