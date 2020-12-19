@@ -1,5 +1,4 @@
 const lector = require("../../lector");
-const path = require("path");
 const efectos = require("../../efectos");
 const { dialog } = require('electron').remote;
 const remote = require("electron").remote;
@@ -8,41 +7,29 @@ let imageOriginal = null;
 let imagenFinal = null;
 let direccionOriginal = null;
 
-let btnTest = null; let btnLoadImg = null; let btnResetImg = null;
-let btnPix1 = null; let rngPix1 = null; let lblPix1 = null; let btnTestPix1 = null;
-let contWorkbench = null; let menu = null; let btnUndoTest=null;
-let imgViewer = null; let btnSave = null; let loadAnimationPnl = null;
+let rngPix1 = null; let lblPix1 = null;
+let contWorkbench = null; let menu = null;
+let imgViewer = null; let loadAnimationPnl = null;
 let noImagePnl=null;
 
 document.addEventListener('DOMContentLoaded', function () {
     imgViewer = document.getElementById("img-vista");
-    btnTest = document.getElementById("btn-test");
-    btnPix1 = document.getElementById("btn-pix-1");
     rngPix1 = document.getElementById("rng-pix-1");
     lblPix1 = document.getElementById("lbl-pix-1");
-    btnTestPix1 = document.getElementById("btn-test-pix-1");
-    btnLoadImg = document.getElementById("btn-load-img");
     contWorkbench = document.getElementById("cont-workbench");
     menu = document.getElementById("menu");
-    btnResetImg = document.getElementById("btn-reset");
-    btnSave = document.getElementById("btn-save");
     loadAnimationPnl = document.getElementById("loading-animation");
-    btnUndoTest = document.getElementById("btn-undo-test");
     noImagePnl=document.getElementById("no-img-background");
 
     window.addEventListener('resize', calcularScroll);
-    btnTest.onclick = test;
-    btnTestPix1.onclick = testearPixelado1;
-    btnPix1.onclick = aplicarPixeleado1;
-    btnLoadImg.onclick = cambiarImagen;
-    rngPix1.oninput = function () { lblPix1.value = rngPix1.value; }
-    btnResetImg.onclick = resetImgToOriginal;
-    btnSave.onclick = guardarImagen;
-    btnUndoTest.onclick=undoTest;
 
     calcularScroll();
     document.getElementById("animacion-loading-app").remove();
 });
+
+function rangeEventPix1 (){
+    lblPix1.value = rngPix1.value;
+}
 
 function undoTest (){
     if (imagenFinal!=null){
