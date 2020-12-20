@@ -93,6 +93,7 @@ body, html, .contenedor-main {
 
 #motivational-animation{
     background-color: rgb(35, 39, 39);
+    background-image: url("../../img/milosBackground.gif");
     width: 100%;
     height: 100%;
     position: absolute;
